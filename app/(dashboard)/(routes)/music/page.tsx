@@ -22,8 +22,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const MusicPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [music, setMusic] = useState<string>();
 
@@ -45,8 +47,9 @@ const MusicPage = () => {
       setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
