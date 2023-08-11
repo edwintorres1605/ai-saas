@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
+import { toast } from "react-hot-toast";
 
 import { useProModal } from "@/hooks/use-pro-modal";
 import { cn } from "@/lib/utils";
@@ -58,6 +59,8 @@ const ConversationPage = () => {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong!");
       }
     } finally {
       router.refresh();

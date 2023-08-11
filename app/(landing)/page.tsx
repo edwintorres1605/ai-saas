@@ -1,8 +1,14 @@
+import { LandingContent } from "@/components/landing-content";
+import { LandingHero } from "@/components/landing-hero";
+import { LandingNavbar } from "@/components/landing-navbar";
+
 const LandingPage = () => {
   return (
-    <p className="text-6xl text-green-500">
-      Hello AI SaaS
-    </p>
+    <div className="h-full">
+      <LandingNavbar />
+      <LandingHero />
+      <LandingContent />
+    </div>
   )
 }
 
